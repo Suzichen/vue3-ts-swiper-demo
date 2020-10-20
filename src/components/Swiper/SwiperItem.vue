@@ -1,5 +1,5 @@
 <template>
-  <div class="swiper-slide">
+  <div class="swiper-slide " :class="{ 'swiper-no-swiping': noSwiping }">
     <slot v-if="!autoScroll"></slot>
     <div v-else class="swiper-container swiper-container-scrollbar">
       <div class="swiper-wrapper">
@@ -19,6 +19,10 @@ import { Swiper } from 'swiper/bundle'
 export default defineComponent({
   name: 'SwiperItem',
   props: {
+    noSwiping: {
+      type: Boolean,
+      default: false
+    },
     autoScroll: {
       type: Boolean,
       default: false
