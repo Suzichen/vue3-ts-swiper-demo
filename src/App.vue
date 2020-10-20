@@ -1,27 +1,24 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <Demo msg="测试swiper"/>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import HelloWorld from './components/HelloWorld.vue'
+import Demo from './components/Demo.vue'
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld
+    Demo
   }
 })
 </script>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+html,body,#app {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #fafafa;
 }
 </style>
