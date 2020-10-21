@@ -5,18 +5,27 @@ import './index.scss'
 
 export default defineComponent({
   name: 'Swiper',
-  setup () {
+  setup (_, { emit }) {
     const swiperV = ref({} as Swiper)
     onMounted(() => {
       swiperV.value = new Swiper('.swiper-container-v', {
-        direction: 'vertical'
+        direction: 'vertical',
+        on: {
+          slideChangeTransitionEnd: e => {
+            emit('change', e.activeIndex)
+          }
+        }
       })
     })
     const next = () => {
       swiperV.value.slideNext()
     }
+    const prev = () => {
+      swiperV.value.slidePrev()
+    }
     return {
-      next
+      next,
+      prev
     }
   },
   render () {

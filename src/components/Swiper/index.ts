@@ -1,5 +1,5 @@
 import Swiper from './Swiper'
-import SwiperItem from './SwiperItem.vue'
+import SwiperItem from './SwiperItem'
 
 export {
   Swiper,
