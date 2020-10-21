@@ -1,9 +1,7 @@
-import Swiper from './Swiper.vue'
-import SwiperTsx from './SwiperTsx'
+import Swiper from './Swiper'
 import SwiperItem from './SwiperItem.vue'
 
 export {
-  SwiperTsx,
   Swiper,
   SwiperItem
 }
