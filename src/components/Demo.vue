@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <!-- <SwiperTsx>
+    <SwiperTsx>
       <template #default>
         <swiper-item>
           <span style="color: red">Vertical Slide 1 as Vue components</span>
@@ -12,8 +12,8 @@
           <span style="color: red">Vertical Slide 3 as Vue components</span>
         </swiper-item>
       </template>
-    </SwiperTsx> -->
-    <Swiper ref="swiperRef" :touchable="touchable" v-bind="swiperConfig" @change="onSwipeChange">
+    </SwiperTsx>
+    <!-- <Swiper ref="swiperRef" :touchable="touchable" v-bind="swiperConfig" @change="onSwipeChange">
       <swiper-item :no-swiping="true">
         <p>此页不可拖动切换</p>
         <button @click="next">切换到下一页</button>
@@ -31,22 +31,22 @@
       <swiper-item>
         <span style="color: red">Vertical Slide 4 as Vue components</span>
       </swiper-item>
-    </Swiper>
+    </Swiper> -->
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import { Swiper, SwiperItem } from './Swiper'
-// import { SwiperTsx, SwiperItem } from './Swiper'
+// import { Swiper, SwiperItem } from './Swiper'
+import { SwiperTsx, SwiperItem } from './Swiper'
 interface TSwiper {
   next(): void;
 }
 export default defineComponent({
   name: 'Demo',
   components: {
-    // SwiperTsx,
-    Swiper,
+    SwiperTsx,
+    // Swiper,
     SwiperItem
   },
   data () {

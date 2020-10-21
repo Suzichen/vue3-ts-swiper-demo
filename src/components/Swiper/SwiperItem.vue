@@ -39,7 +39,7 @@ export default defineComponent({
       freeMode: true,
       nested: true
     })
-    console.log(swiperScrollbar)
+    console.log(swiperScrollbar.$el)
   }
 })
 </script>
