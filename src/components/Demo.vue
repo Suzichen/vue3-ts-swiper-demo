@@ -6,8 +6,8 @@
           <span style="color: red">Vertical Slide 1 as Vue components</span>
           <button @click="test">更新下一页数据并跳转</button>
         </swiper-item>
-        <swiper-item ref="scrollSwiperRef" :auto-scroll="true">
-          <p v-for="i in plength" :key="i">{{ i }}: 未知数据长度</p>
+        <swiper-item ref="scrollSwiperRef" :auto-scroll="true" v-if="plength">
+          <p v-for="i in plength" :key="i">{{ i }}: 动态长度页面</p>
         </swiper-item>
         <swiper-item>
           <span style="color: red">Vertical Slide 3 as Vue components</span>
@@ -28,10 +28,8 @@ export default defineComponent({
   },
   data () {
     return {
-      plength: 50,
-      swiperConfig: {
-        initialSwipe: 0
-      },
+      plength: 0,
+      addLen: 0,
       swipeIndex: 0
     }
   },
@@ -48,14 +46,17 @@ export default defineComponent({
       this.swiperRef.next()
     },
     test () {
-      console.log(this.swiperRef)
-      console.log(this.scrollSwiperRef)
-      console.log(this.scrollSwiperRef.updated) // TODO: undefined
-      // this.scrollSwiperRef.updated()
-      // this.swiperRef.next()
+      this.addLen += 15
+      this.plength = this.addLen
+      this.$nextTick(() => {
+        this.swiperRef.updateSlides()
+        this.scrollSwiperRef.doUpdate()
+        this.swiperRef.next()
+      })
     },
     onSwipeChange (i: number) {
       this.swipeIndex = i
+      if (i === 0) this.plength = 0 // 当返回到动态高度页的上一页时，需要销毁此动态页以确保滚动不出错(此demo用v-if)
     }
   }
 })

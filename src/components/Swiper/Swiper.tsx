@@ -23,9 +23,17 @@ export default defineComponent({
     const prev = () => {
       swiperV.value.slidePrev()
     }
+    const doUpdate = () => {
+      swiperV.value.update()
+    }
+    const updateSlides = () => {
+      swiperV.value.updateSlides()
+    }
     return {
       next,
-      prev
+      prev,
+      doUpdate,
+      updateSlides
     }
   },
   render () {

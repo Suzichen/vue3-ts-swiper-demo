@@ -29,17 +29,14 @@ export default defineComponent({
         nested: true
       })
     })
-    const update = () => {
-      console.log('update')
-      // swiperScrollbar.value.update()
+    const doUpdate = () => {
+      swiperScrollbar.value.update()
     }
     return {
-      swiperScrollbar,
-      update
+      doUpdate
     }
   },
   render () {
-    console.log('render', this.$props.autoScroll)
     const defaultSlots = this.$slots.default ? this.$slots.default() : ''
     const getContent = () => {
       return !this.$props.autoScroll
