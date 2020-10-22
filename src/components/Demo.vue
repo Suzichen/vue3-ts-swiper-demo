@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent, nextTick, ref } from 'vue'
 import { Swiper, SwiperItem } from './Swiper'
 export default defineComponent({
   name: 'Demo',
@@ -26,37 +26,42 @@ export default defineComponent({
     Swiper,
     SwiperItem
   },
-  data () {
+  setup () {
+    const plength = ref(0)
+    const addLen = ref(0)
+    const swiperRef = ref({} as typeof Swiper)
+    const scrollSwiperRef = ref({} as typeof SwiperItem)
+    // 更新动态页组件并跳转
+    const updateSwiperItem = () => {
+      swiperRef.value.updateSlides()
+      scrollSwiperRef.value.update()
+      swiperRef.value.next()
+    }
+    // 更新数据
+    const test = () => {
+      addLen.value += 15
+      plength.value = addLen.value
+      nextTick(() => { updateSwiperItem() })
+    }
+    // 记录索引值
+    const swipeIndex = ref(0)
+    const onSwipeChange = (i: number) => {
+      swipeIndex.value = i
+      if (i === 0) plength.value = 0 // 当返回到动态高度页的上一页时，需要销毁此动态页以确保下次滚动不出错(此demo用v-if)
+    }
+    // 跳转下一页
+    const next = () => {
+      swiperRef.value.next()
+    }
     return {
-      plength: 0,
-      addLen: 0,
-      swipeIndex: 0
-    }
-  },
-  computed: {
-    swiperRef () {
-      return this.$refs.swiperRef as typeof Swiper
-    },
-    scrollSwiperRef () {
-      return this.$refs.scrollSwiperRef as typeof SwiperItem
-    }
-  },
-  methods: {
-    next () {
-      this.swiperRef.next()
-    },
-    test () {
-      this.addLen += 15
-      this.plength = this.addLen
-      this.$nextTick(() => {
-        this.swiperRef.updateSlides()
-        this.scrollSwiperRef.doUpdate()
-        this.swiperRef.next()
-      })
-    },
-    onSwipeChange (i: number) {
-      this.swipeIndex = i
-      if (i === 0) this.plength = 0 // 当返回到动态高度页的上一页时，需要销毁此动态页以确保滚动不出错(此demo用v-if)
+      plength,
+      addLen,
+      swipeIndex,
+      swiperRef,
+      scrollSwiperRef,
+      next,
+      test,
+      onSwipeChange
     }
   }
 })

@@ -23,7 +23,7 @@ export default defineComponent({
     const prev = () => {
       swiperV.value.slidePrev()
     }
-    const doUpdate = () => {
+    const update = () => {
       swiperV.value.update()
     }
     const updateSlides = () => {
@@ -32,7 +32,7 @@ export default defineComponent({
     return {
       next,
       prev,
-      doUpdate,
+      update,
       updateSlides
     }
   },

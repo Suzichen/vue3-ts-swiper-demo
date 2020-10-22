@@ -29,11 +29,11 @@ export default defineComponent({
         nested: true
       })
     })
-    const doUpdate = () => {
+    const update = () => {
       swiperScrollbar.value.update()
     }
     return {
-      doUpdate
+      update
     }
   },
   render () {
