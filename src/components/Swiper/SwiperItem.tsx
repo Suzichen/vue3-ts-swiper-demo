@@ -1,7 +1,12 @@
-import { defineComponent, ref, onMounted, h } from 'vue'
+import { DefineComponent, defineComponent, ref, onMounted, h } from 'vue'
 import { Swiper } from 'swiper/bundle'
 import 'swiper/swiper-bundle.css'
 import './index.scss'
+
+interface TSwiperItem extends DefineComponent {
+  update(): void;
+  tessdfdsgdfg(): void;
+}
 
 export default defineComponent({
   name: 'SwiperItem',
@@ -33,7 +38,10 @@ export default defineComponent({
       swiperScrollbar.value.update()
     }
     return {
-      update
+      update,
+      tessdfdsgdfg: () => {
+        console.log('类型导出测试')
+      }
     }
   },
   render () {
@@ -58,4 +66,4 @@ export default defineComponent({
       </div>
     )
   }
-})
+}) as unknown as TSwiperItem

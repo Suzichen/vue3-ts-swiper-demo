@@ -1,7 +1,14 @@
-import { defineComponent, ref, onMounted, h } from 'vue'
+import { DefineComponent, defineComponent, ref, onMounted, h } from 'vue'
 import { Swiper } from 'swiper/bundle'
 import 'swiper/swiper-bundle.css'
 import './index.scss'
+
+interface TSwiper extends DefineComponent {
+  next(): void;
+  prev(): void;
+  update(): void;
+  updateSlides(): void;
+}
 
 export default defineComponent({
   name: 'Swiper',
@@ -46,4 +53,4 @@ export default defineComponent({
       </div>
     )
   }
-})
+}) as unknown as TSwiper
