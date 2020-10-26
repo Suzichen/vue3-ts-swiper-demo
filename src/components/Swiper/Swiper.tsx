@@ -14,11 +14,13 @@ export default defineComponent({
   name: 'Swiper',
   setup (_, { emit }) {
     const swiperV = ref({} as Swiper)
+    const prevIndex = ref(0)
     onMounted(() => {
       swiperV.value = new Swiper('.swiper-container-v', {
         direction: 'vertical',
         on: {
           slideChangeTransitionEnd: e => {
+            prevIndex.value = swiperV.value.previousIndex
             emit('change', e.activeIndex)
           }
         }
@@ -40,7 +42,8 @@ export default defineComponent({
       next,
       prev,
       update,
-      updateSlides
+      updateSlides,
+      prevIndex
     }
   },
   render () {
