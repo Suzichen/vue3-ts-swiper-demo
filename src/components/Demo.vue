@@ -4,6 +4,7 @@
       <template #default>
         <swiper-item :no-swiping="true">
           <span style="color: red">Vertical Slide 1 as Vue components</span>
+          <Qrcode value="https://www.baidu.com" :width="120" :margin="0" />
           <button @click="doAdd(15)">加15条数据并跳转</button>
         </swiper-item>
         <swiper-item ref="scrollSwiperRef" :auto-scroll="true" v-if="counter">
@@ -20,6 +21,7 @@
 <script lang="ts">
 import { defineComponent, nextTick, ref } from 'vue'
 import { Swiper, SwiperItem } from './Swiper'
+import Qrcode from './QrCode'
 
 const useCounter = () => {
   const counter = ref(0)
@@ -42,7 +44,8 @@ export default defineComponent({
   name: 'Demo',
   components: {
     Swiper,
-    SwiperItem
+    SwiperItem,
+    Qrcode
   },
   setup () {
     const { counter, increment, reset } = useCounter()
