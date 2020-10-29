@@ -5,7 +5,8 @@
         <swiper-item :no-swiping="true">
           <span style="color: red">Vertical Slide 1 as Vue components</span>
           <Qrcode value="https://www.baidu.com" :width="120" :margin="0" />
-          <button @click="doAdd(15)">加15条数据并跳转</button>
+          <button @click="doAdd(15)">加15条数据并跳转</button><br>
+          <button @click="readonlyTest">readonly测试</button>
         </swiper-item>
         <swiper-item ref="scrollSwiperRef" :auto-scroll="true" v-if="counter">
           <p v-for="i in counter" :key="i">{{ i }}: 动态长度页面</p>
@@ -19,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, nextTick, ref } from 'vue'
+import { defineComponent, nextTick, ref, readonly } from 'vue'
 import { Swiper, SwiperItem } from './Swiper'
 import Qrcode from './QrCode'
 
@@ -34,7 +35,8 @@ const useCounter = () => {
     counter.value = 0
   }
   return {
-    counter,
+    // 直接更改会报错
+    counter: readonly(counter),
     increment,
     reset
   }
@@ -79,7 +81,8 @@ export default defineComponent({
       scrollSwiperRef,
       next,
       doAdd,
-      onSwipeChange
+      onSwipeChange,
+      readonlyTest: () => { /* counter.value += 100 */ }
     }
   }
 })
